@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~ Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+~
+~ WSO2 Inc. licenses this file to you under the Apache License,
+~ Version 2.0 (the "License"); you may not use this file except
+~ in compliance with the License.
+~ You may obtain a copy of the License at
+~
+~ http://www.apache.org/licenses/LICENSE-2.0
+~
+~ Unless required by applicable law or agreed to in writing,
+~ software distributed under the License is distributed on an
+~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~ KIND, either express or implied.  See the License for the
+~ specific language governing permissions and limitations
+~ under the License.
+-->
+
+<!--
+ ~ This xsd file contains the validations need for keyChange.xml when
+ ~ the decryption and encryption is done due to key store change
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="KeyChange">
+        <xsd:complexType>
+            <xsd:sequence minOccurs="1" maxOccurs="1">
+                <xsd:element name="Config" type="Config" minOccurs="1"/>
+                <xsd:element name="TenantDomains" type="TenantDomains" minOccurs="0"/>
+                <xsd:element name="RegistryData" type="RegistryData" minOccurs="1"/>
+                <xsd:element name="isDssDeployed" minOccurs="1" maxOccurs="1">
+                    <!--validating for null elements-->
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Config">
+        <xsd:sequence>
+            <xsd:element name="OldKey" type="OldKey"/>
+            <xsd:element name="NewKey" type="NewKey"/>
+            <xsd:element name="ChangedDateTimestamp" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ChangeMethod" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <!--4 for date-->
+                        <xsd:minLength value="4"/>
+                        <!--12 for keyChangeXML-->
+                        <xsd:maxLength value="12"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OldKey">
+        <xsd:sequence>
+            <xsd:element name="KeyPath" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+
+            <xsd:element name="KeyPass" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="KeyAlias" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NewKey">
+        <xsd:sequence>
+            <xsd:element name="KeyPath" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="KeyPass" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="KeyAlias" minOccurs="1" maxOccurs="1">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="TenantDomains">
+        <xsd:sequence>
+            <xsd:element name="TenantDomain" maxOccurs="unbounded" minOccurs="0">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RegistryData">
+        <xsd:sequence>
+            <xsd:element name="Resource" type="Resource" maxOccurs="unbounded" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Resource">
+        <xsd:sequence>
+            <!--validating for null elements-->
+            <xsd:element name="RegistryPath" minOccurs="1" maxOccurs="1">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="Properties" type="Properties" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Properties">
+        <xsd:sequence>
+            <xsd:element name="PropertyKey" maxOccurs="unbounded">
+                <!--validating for null elements-->
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
