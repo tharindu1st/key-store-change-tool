@@ -219,6 +219,7 @@ public final class KeyChangeCryptoUtils {
 
     /**
      * This method is used to get private key.
+     *
      * @param   keyStore            key store used.
      * @param   keyPass             key store password. This is configured in keyChange.xml. Cannot be null since
      *                              keyChange.xml is validated through keyChange.xsd.
@@ -338,7 +339,7 @@ public final class KeyChangeCryptoUtils {
     }
 
     /**
-     * Method used to encrypt and encode the encrypted data to base64.
+     * This method used to encrypt and encode the encrypted data to base64.
      *
      * @param   plainTextBytes      text to be encrypted in bytes.
      * @return                      cipher text encrypted and encoded.
@@ -360,7 +361,7 @@ public final class KeyChangeCryptoUtils {
     }
 
     /**
-     * Method used to decode and decrypt cipher text.
+     * This method used to decode and decrypt cipher text.
      *
      * @param   base64CipherText    text to be encrypted in bytes.
      * @return                      plain text.

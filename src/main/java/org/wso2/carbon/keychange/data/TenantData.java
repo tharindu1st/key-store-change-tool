@@ -43,9 +43,8 @@ public class TenantData {
      *
      * @param tenantDomain  tenant domain which is used to iterate over tenants.
      */
-    public TenantData(String tenantDomain){
+    public TenantData(String tenantDomain) {
         this.tenantDomain = tenantDomain;
     }
-
 }
 
