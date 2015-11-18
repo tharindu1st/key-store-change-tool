@@ -252,6 +252,28 @@ public final class KeyChangeDataUtils {
     }
 
     /**
+     * This method is used to get admin username.
+     *
+     * @param   document            keyChange.xml document.
+     * @return                      to check whether dss is enabled or not.
+     * @throws  KeyChangeException  Throws when:
+     *                              <ul>
+     *                                  <li>If XPathExpressionException exception occurs when evaluating xml tag
+     *                                  which has the configuration of admin username.</li>
+     *                                  <li>If illegal argument supplied document.</li>
+     *                              </ul>
+     */
+    public static String getAdminUsername(Document document) throws KeyChangeException {
+        // Validate for illegal arguments
+        validateDocumentArgument(document);
+        try {
+            return String.valueOf(getValueByXpathExpression(KeyChangeConstants.ADMIN_USERNAME_XPATH, document));
+        } catch (XPathExpressionException e) {
+            throw new KeyChangeException("Error getting admin username from " + KeyChangeConstants.XML_FILE, e);
+        }
+    }
+
+    /**
      * This method is used to get a XML tag value from a given xPath.
      *
      * @param   xPathExpression             xPath expression.

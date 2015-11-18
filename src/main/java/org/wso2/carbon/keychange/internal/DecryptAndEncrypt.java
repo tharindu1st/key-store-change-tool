@@ -307,7 +307,7 @@ public class DecryptAndEncrypt {
         Tenant superTenant = new Tenant();
         superTenant.setId(MultitenantConstants.SUPER_TENANT_ID);
         superTenant.setDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
-        superTenant.setAdminName(KeyChangeConstants.SUPER_ADMIN_USERNAME);
+        superTenant.setAdminName(KeyChangeDataUtils.getAdminUsername(getKeyChangeXmlDocument()));
         superTenant.setActive(true);
         // Add super tenant to tenant list.
         tenantList.add(superTenant);
@@ -644,8 +644,9 @@ public class DecryptAndEncrypt {
      */
     private Document getDocumentElement(DocumentBuilder builder, Resource resource) throws KeyChangeException {
         try {
-            return builder.parse(new InputSource(new StringReader(RegistryUtils.decodeBytes(
-                    (byte[]) resource.getContent()))));
+
+            String elementString = new String((byte[]) resource.getContent());
+            return builder.parse(new InputSource(new StringReader(elementString)));
         } catch (SAXException e) {
             throw new KeyChangeException("Document builder parser error.", e);
         } catch (IOException e) {

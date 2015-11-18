@@ -106,6 +106,11 @@ public final class KeyChangeConstants {
     public static final String IS_DSS_DEPLOYED_XPATH = "/KeyChange/isDssDeployed";
 
     /**
+     * Admin username xPath.
+     */
+    public static final String ADMIN_USERNAME_XPATH = "/KeyChange/adminUsername";
+
+    /**
      * Old key, key for KeyChangeData.
      */
     public static final String OLD_KEY_MAP_KEY = "OldKey";
@@ -139,11 +144,6 @@ public final class KeyChangeConstants {
      * Cipher operation mode constant for decryption.
      */
     public static final int OPERATION_MODE_DECRYPTION = 2;
-
-    /**
-     * This parameter is the super admin username.
-     */
-    public static final String SUPER_ADMIN_USERNAME = "admin";
 
     /**
      * Method 'date' to key change method in KeyChange.xml file.

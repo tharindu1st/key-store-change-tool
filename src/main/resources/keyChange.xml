@@ -62,4 +62,5 @@
     <!--WSO2 DSS specific encrypted contents included file entries-->
     <!--Data source password is the field encrypted-->
     <isDssDeployed>false</isDssDeployed>
+    <adminUsername>prasanna</adminUsername>
 </KeyChange>
